@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 91c693ce0e1a67447bdfe3f283be0179
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - Mushroom: {fileID: 1367770122149371776, guid: 1bfca24693fee3e45ae8d04506b0a532,
+      type: 3}
+  - LevelParent: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
