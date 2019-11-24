@@ -12,6 +12,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     RaycastHit hit;
 
+    public GameObject DeadScreen;
+
     void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -46,5 +48,14 @@ public class PlayerBehaviour : MonoBehaviour
     {
         _rb.velocity = Vector3.zero;
         deltaPos = Vector3.zero;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Centipede"))
+        {
+            Time.timeScale = 0f;
+            DeadScreen.SetActive(true);
+        }
     }
 }

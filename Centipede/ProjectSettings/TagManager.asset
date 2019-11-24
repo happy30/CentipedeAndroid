@@ -8,6 +8,8 @@ TagManager:
   - Entity
   - Mushroom
   - Centipede
+  - Controller
+  - ShootButton
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrackBall : MonoBehaviour
 {
     public GameObject Player;
+    public Camera mainCamera;
     
     [Range(0.005f, 0.02f)]
     public float dragSpeed;
@@ -16,6 +17,36 @@ public class TrackBall : MonoBehaviour
 
     private Vector3 lastMousePosition;
 
+
+    private void Update()
+    {
+        if (Input.touchCount == 0) return;
+
+        for (int i = 0; i < Input.touchCount; i++)
+        {
+            Touch touch = Input.touches[i];
+            Ray touchRay = mainCamera.ScreenPointToRay(touch.position);
+            RaycastHit[] hits = Physics.RaycastAll(touchRay);
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider.gameObject.CompareTag("Controller"))
+                {
+                    //found controller
+                    Vector2 deltaRot = Input.touches[i].deltaPosition;
+                    Player.GetComponent<PlayerBehaviour>().MoveNew(deltaRot * 33);
+
+                    if (Input.touches[i].phase == TouchPhase.Ended)
+                    {
+                        deltaRot = Vector2.zero;
+                        Player.GetComponent<PlayerBehaviour>().MoveNew(deltaRot);
+                    }
+                }
+            }
+        }
+    }
+
+    /*
+
     void OnMouseDown()
     {
         lastMousePosition = Input.mousePosition;
@@ -26,7 +57,7 @@ public class TrackBall : MonoBehaviour
 
         distance = Input.mousePosition - lastMousePosition;
         distance *= 100f;
-        Player.GetComponent<PlayerBehaviour>().MoveNew(distance);
+        
         lastMousePosition = Input.mousePosition;
     }
 
@@ -40,4 +71,5 @@ public class TrackBall : MonoBehaviour
     {
         Player.GetComponent<PlayerBehaviour>().Stop();
     }
+    */
 }

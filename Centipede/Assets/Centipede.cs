@@ -43,6 +43,7 @@ public class Centipede : MonoBehaviour
     {
         moveState = MoveState.IntoScreen;
         Left = Random.Range(0, 1) == 0;
+        LevelParent = GameObject.Find("Level").transform;
 
     }
 
